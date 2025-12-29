@@ -17,11 +17,11 @@ Creates a shortened URL from a long URL.
 **Example Request:**
 
 ```bash
-curl -X POST http://localhost:3000/short_url \
+curl -X POST http://localhost:8080/short_url \
   -H "Content-Type: application/json" \
   -d '{
-    "long_url": "https://example.com/very/long/path/to/resource",
-    "expires_in_days": 30
+    "long_url": "https://www.google.com",
+    "expires_in_days": 5
   }'
 ```
 
@@ -49,7 +49,7 @@ Redirects to the original long URL associated with the given slug. Also incremen
 **Example Request:**
 
 ```bash
-curl -L http://localhost:3000/abc123
+curl -L http://localhost:8080/abc123
 ```
 
 **Response:** 302 Redirect to the original long URL
@@ -78,7 +78,7 @@ Retrieves detailed information about a shortened URL.
 **Example Request:**
 
 ```bash
-curl http://localhost:3000/url_info/abc123
+curl http://localhost:8080/url_info/abc123
 ```
 
 **Example Response:**
@@ -86,8 +86,8 @@ curl http://localhost:3000/url_info/abc123
 ```json
 {
   "slug": "abc123",
-  "long_url": "https://example.com/very/long/path/to/resource",
-  "click_count": 42,
+  "long_url": "https://www.google.com",
+  "click_count": 10,
   "created_at": "2025-01-15T10:30:00.000Z",
   "expires_at": "2025-02-14T10:30:00.000Z"
 }
@@ -119,7 +119,7 @@ Creates multiple short URLs in a single request (transactional).
 **Example Request:**
 
 ```bash
-curl -X POST http://localhost:3000/batch_urls \
+curl -X POST http://localhost:8080/batch_urls \
   -H "Content-Type: application/json" \
   -d '{
     "urls": [
@@ -136,15 +136,15 @@ curl -X POST http://localhost:3000/batch_urls \
 {
   "urls": [
     {
-      "short_url": "http://localhost:3000/abc123",
+      "short_url": "http://localhost:8080/abc123",
       "long_url": "https://example.com/page1"
     },
     {
-      "short_url": "http://localhost:3000/def456",
+      "short_url": "http://localhost:8080/def456",
       "long_url": "https://example.com/page2"
     },
     {
-      "short_url": "http://localhost:3000/ghi789",
+      "short_url": "http://localhost:8080/ghi789",
       "long_url": "https://example.com/page3"
     }
   ]
